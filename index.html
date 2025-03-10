@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible Components Assignment</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Case Study: Checkboxes and Accessibility!</h1>
+      <nav>
+        <ul>
+          <li><a href="#part1">Part 1: Input</a></li>
+          <li><a href="#part2">Part 2: Output</a></li>
+          <li><a href="#part3">Part 3: State Models & Redesign</a></li>
+          <li><a href="#part4">Part 4: Reflection</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- todos - add descriptions and context for each app and make it case study appropriate
+     change tenses to "You can't or I can't", add learnability observations, stop callig it select deelect, add screen reader stuff -->
+    <main>
+      <section>
+        <h2>Introduction</h2>
+        <p>
+          Checkboxes are a common user interface component, but their usability
+          and accessibility can vary across different applications. In this case
+          study, I analyzed how checkboxes and their labels function in three
+          different applications and evaluating their interactivity, keyboard
+          navigation, and accessibility for different users. Then, I created
+          state models that illustrate how users navigate checkboxes in their
+          current form and propose a redesigned version of one application's
+          implementation. I hope to emphasize the importance that small UI
+          changes can make and challenge my own ways of thinking about common UI
+          components! A few general notes:
+        </p>
+        <ul>
+          <li>
+            My laptop's screenshot feature did not display my cursor, so I have
+            included pictures of what the cursors look like and describe them.
+          </li>
+          <li>
+            I use a Thinkpad X14 Carbon and an iPhone 14 for the mobile
+            versions. For my laptop browser, I use Google Chrome, and mobile
+            browser, I use Safari.
+          </li>
+          <li>
+            I use the word "toggle" to describe the checking or unchecking of a
+            checkbox.
+          </li>
+        </ul>
+      </section>
+      <section id="part1">
+        <h2>Part 1: Input</h2>
+        <p>
+          I chose to examine three applications that I often use that have
+          checkboxes - Google Forms, the Microsoft To-dos application, and the
+          in-game settings for the video game Hades. When interacting with a
+          checkbox, inputs refer to the different ways a user can engage with
+          the component, such as clicking with a mouse, using keyboard
+          shortcuts, or tapping on a touchscreen. In this section, I explored
+          how users interact with these applications' checkboxes across mouse,
+          keyboard, and mobile inputs.
+        </p>
+
+        <h3>Google Forms Checkboxes</h3>
+        <figure>
+          <img
+            src="images/google-forms-checkbox.png"
+            alt="Google Forms Checkbox State Model"
+            width="500"
+          />
+          <figcaption>
+            Figure 1: Mouse Interaction State Model for Google Forms Checkbox
+          </figcaption>
+        </figure>
+
+        <table>
+          <tr>
+            <th>Interaction Type</th>
+            <th>Observations</th>
+          </tr>
+          <tr>
+            <td>Mouse/Touchpad</td>
+            <td>
+              <ul>
+                <li>
+                  Clicking anywhere on the answer text also toggles the checkbox
+                </li>
+                <li>
+                  You can also click beyond the answer text - as long as you
+                  click within the question "box" in line with a checkbox
+                  option/its text, it will check the box.
+                </li>
+                <li>
+                  Long-clicking on an option (including the checkbox, the text,
+                  or the "line" that the checkbox and text are on) only triggers
+                  the toggle when you release.
+                </li>
+                <li>
+                  Because it toggles on release, clicking and dragging to
+                  highlight text automatically toggles or toggles the checkbox,
+                  making text toggles a little awkward.
+                </li>
+                <li>
+                  You can also click beyond the answer text - as long as you
+                  click within the question "box" in line with a checkbox
+                  option/its text, it will toggle.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Keyboard</td>
+            <td>
+              <ul>
+                <li>
+                  Tab navigation works, but once you tab past a checkbox, you
+                  have to cycle through every element on the form to go back.
+                  You can't use arrow keys to move to the next option.
+                </li>
+                <li>
+                  Something I noticed was that using the down arrow for
+                  checkboxes doesn't work and instead will scroll the page
+                  downwards, but for single-choice questions (a circle instead
+                  of a box), the arrow keys do change focus of the answer
+                  choices.
+                </li>
+                <li>
+                  Pressing spacebar toggles but Enter does nothing. Holding the
+                  spacebar rapidly toggles the checkbox.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Mobile</td>
+            <td>
+              <ul>
+                <li>
+                  You can't really hover on mobile so the indicator doesn't show
+                  up until you press a box.
+                </li>
+                <li>
+                  Like on computer, clicking the space in line with the checkbox
+                  (whether it's the text or the space after the text) will
+                  toggle the checkbox. This makes it a little harder to ensure
+                  your touch will toggle the option you intended.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>Microsoft To-Do Checkboxes</h3>
+        <p>
+          I am going to refer to each checkbox item as a task since that is what
+          the application refers to them as. Note that I chose to use the
+          browser version since the app would not download for me. I also wanted
+          to better compare it to Google Form checkboxes, which were also in a
+          browser. A few general observations across all devices/interfaces:
+        </p>
+        <ul>
+          <li>
+            There are visual separations between each "item" - each item is
+            bounded by a rectangle that is a different color than the
+            background.
+          </li>
+          <li>
+            The checkbox is shaped like a circle, rather than the typical
+            square. I will still be referring to it as a checkbox.
+          </li>
+        </ul>
+
+        <table>
+          <tr>
+            <th>Interaction Type</th>
+            <th>Observations</th>
+          </tr>
+          <tr>
+            <td>Mouse</td>
+            <td>
+              <ul>
+                <li>
+                  If you click anywhere on the task that isn't the checkbox
+                  itself, it does not mark the task as completed but rather
+                  opens up a sidebar with task details. Only clicking on the
+                  checkbox will mark it as completed.
+                </li>
+                <li>
+                  You cannot select text on the task - clicking and dragging
+                  instead allows you to move where the task is located in the
+                  list. However, this drag and drop option is not an option for
+                  mobile or keyboard users.
+                </li>
+                <li>
+                  Clicking on a task highlights the task even when you exit out
+                  of the sidebar of task details that pops up, allowing the user
+                  to see what task they last viewed the details of.
+                </li>
+                <li>
+                  Right clicking a task pulls up a dropdown menu with various
+                  options for the task, like editing, deleting, etc.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Keyboard</td>
+            <td>
+              <ul>
+                <li>
+                  You can tab through individual “components” of a task - the
+                  task itself, the checkbox, the text, the star button. If you
+                  press space or enter on the checkbox then it checks off the
+                  task, and if you press enter on the text itself it opens up
+                  the sidebar. However, if you press enter on the text itself it
+                  opens up the sidebar to edit the task details, but you can’t
+                  press enter again to exit and have to press tab.
+                </li>
+                <li>
+                  No matter where your focus is on the task (checkbox, star,
+                  text, etc.), if you press the down or up arrow, it takes you
+                  to the next task.
+                </li>
+                <li>
+                  Since right-clicking was an option in this application, I
+                  tried to find a way to right-click but failed. Google told me
+                  it was Shift-F10 but that brought up the actual right click
+                  menu and not the task dropdown options.
+                </li>
+                <li>
+                  You cannot tab through each task on the list - you can tab
+                  onto one task and once you finish getting through the
+                  components of that task (star, checkbox, label), the focus
+                  doesn't move to the next task - it disappears.
+                </li>
+                <li>I could not find a way to reorder tasks.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Mobile</td>
+            <td>
+              <ul>
+                <li>
+                  You can’t drag and drop tasks - when you long-click, it opens
+                  up the right-click dropdown, which means that you can’t move
+                  the order of my tasks around like on laptop.
+                </li>
+                <li>
+                  The checkboxes are also quite small on mobile, and since you
+                  can only check off a task by clicking the tiny circle, it
+                  makes it a little awkward to use.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>Hades Settings Checkboxes</h3>
+        <p>
+          One thing I noticed about these settings was that there was a Reset
+          option, which resets all checkboxes to their default settings.
+        </p>
+        <table>
+          <tr>
+            <th>Interaction Type</th>
+            <th>Observations</th>
+          </tr>
+          <tr>
+            <td>Mouse</td>
+            <td>
+              <ul>
+                <li>
+                  You can hover directly on either a setting's text or the box -
+                  it doesn’t register as “hovered” if your mouse is just nearby
+                  one of the two, which is different from Google Forms.
+                </li>
+                <li>
+                  If you long-click a button, the toggle occurs on click, but on
+                  mobile, it toggles on release.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Keyboard</td>
+            <td>
+              <ul>
+                <li>
+                  Instead of using tab to switch between options, you can use
+                  the WASD or arrow keys—this is typical for gaming and WASD are
+                  the in-game movement controls. Since each key represents a
+                  direction, you can use the keys to move the focus to another
+                  option respective to that direction—for example, to move focus
+                  to the checkbox to the right, you would press the D or right
+                  arrow key.
+                </li>
+                <li>
+                  Spacebar and Enter check and uncheck the boxes. You cannot
+                  toggle multiple options at once.
+                </li>
+                <li>
+                  When you first begin keyboard focus, you start at the leftmost
+                  column of the checkbox options and keep shifting down until
+                  you get to the Reset button, so you have to press multiple
+                  keys to get through every checkbox. Typically, you assume that
+                  one key gets you through all the options.
+                </li>
+                <li>
+                  If you press the down arrow from Bright Cursor or Screen
+                  Shake, it takes you to Reset, but not Transmit Data. The Arrow
+                  key movements are just generally inconsistent—depending on
+                  where your checkbox is located in the layout, pressing the
+                  same key might do different things.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Mobile</td>
+            <td>
+              <ul>
+                <li>
+                  There are so many different settings that it is difficult to
+                  ensure you’re tapping the right setting, especially since the
+                  phone screen is small.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="part2">
+        <h2>Part 2: Output</h2>
+        <p>
+          Outputs, on the other hand, are how the interface responds to the
+          user's input interactions, such as visual changes (color changes,
+          highlights), auditory feedback (sound effects), or focus indicators
+          for accessibility. In this section, I examined the feedback provided
+          by each application and how it communicates the current state of a
+          checkbox.
+        </p>
+        <h3>Google Forms Checkboxes</h3>
+        <table>
+          <tr>
+            <th>State</th>
+            <th>Observations</th>
+          </tr>
+          <tr>
+            <td>Hovered</td>
+            <td>
+              <ul>
+                <li>
+                  The checkbox darkens slightly on hover and a light-colored
+                  circle appears around the box. The text itself does not change
+                  in appearance.
+                </li>
+                <li>
+                  The box remains highlighted after clicking until clicking
+                  elsewhere.
+                </li>
+                <li>
+                  Hovering on the answer text does not highlight the checkbox;
+                  you have to hover directly over the checkbox.
+                </li>
+                <li>
+                  Although you can click on the text, there is no visual cue
+                  that it is clickable – the cursor remains the default "arrow."
+                </li>
+                <li>
+                  The cursor only changes when you hover over the actual box.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Checked</td>
+            <td>
+              <ul>
+                <li>
+                  A brief animation appears when checking/unchecking.
+                  <strong>INCLUDE VIDEO HERE</strong>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Keyboard Focus</td>
+            <td>
+              <ul>
+                <li>
+                  When tabbed onto a checkbox option, it has the same focus
+                  indicator as the mouse hover (a faint circle around the box) –
+                  no additional indicators.
+                </li>
+                <li>
+                  If you click into a question box and press tab, the focus will
+                  be on the first item in the question box.
+                </li>
+                <li>
+                  If you tab past the first checkbox option, the "This is a
+                  required question" warning shows up even if you haven't
+                  finished tabbing through the rest of the checkbox options.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Mobile Tap</td>
+            <td>
+              <ul>
+                <li>
+                  The toggle animations are identical to the mouse/keyboard
+                  ones.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>Microsoft To-Do Checkboxes</h3>
+        <table>
+          <tr>
+            <th>State</th>
+            <th>Observations</th>
+          </tr>
+          <tr>
+            <td>Hovered</td>
+            <td>
+              <ul>
+                <li>
+                  If you hover over a task, the rectangle that bounds the item
+                  becomes lighter.
+                </li>
+                <li>
+                  If you hover over the checkbox itself, the box becomes lighter
+                  and a check appears within the circle.
+                </li>
+                <li>
+                  If you hover anywhere over a task, the cursor changes to the
+                  pointer instead of the usual triangular shape.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Checked</td>
+            <td>
+              <ul>
+                <li>
+                  When clicking the task's checkbox (marking it as completed), a
+                  quick animation appears where the text is crossed out. The
+                  task then appears in the "Completed To-dos" section.
+                </li>
+                <li>
+                  The animation is quite short and often glitches, so the only
+                  indication of a successful click is that the task disappears.
+                </li>
+                <li>
+                  In the “Completed To-dos” section, the task’s text is crossed
+                  out and is a lighter color.
+                </li>
+                <li>
+                  If you hover over the star, a dialogue box appears detailing
+                  what the star does, but that doesn't appear for the checkbox.
+                </li>
+                <li>
+                  When checked, a ding sound plays (with all input methods).
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Keyboard Focus</td>
+            <td>
+              <ul>
+                <li>
+                  If you tab onto an element, a colored focus outline appears.
+                </li>
+                <li>
+                  The focus order is odd – it starts with the entire task, then
+                  if you tab again, it goes to the checkbox, then to the text
+                  itself, then to the star, and then the focus indicator
+                  disappears.
+                </li>
+                <li>
+                  The hover highlight that appears when focused on a task is
+                  inconsistent – sometimes it appears, sometimes it does not.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Mobile Tap</td>
+            <td>
+              <ul>
+                <li>The checking animation is identical!</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>Hades Settings Checkboxes</h3>
+
+        <table>
+          <tr>
+            <th>State</th>
+            <th>Observations</th>
+          </tr>
+          <tr>
+            <td>Hovered</td>
+            <td>
+              <ul>
+                <li>
+                  When you hover over an option (whether text or box), the
+                  tooltip explaining the purpose of the checkbox appears at the
+                  bottom using both keyboard and mouse.
+                </li>
+                <li>
+                  When hovering, the text turns from white to yellow and the box
+                  lights up, and a “swoosh” sound plays.
+                </li>
+                <li>The cursor’s appearance does not change when hovering.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Checked</td>
+            <td>
+              <ul>
+                <li>
+                  When you check a box, a “thonk” noise plays, and when you
+                  uncheck it, it makes a different “swoosh” noise.
+                </li>
+                <li>
+                  When a box is checked, instead of the typical checkmark, a
+                  circle appears in the box.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Keyboard</td>
+            <td>
+              <ul>
+                <li>
+                  There is no actual focus outline like in Microsoft Todos - the
+                  keyboard focus and hover cues (visual, audio) are identical.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Mobile Tap</td>
+            <td>
+              <ul>
+                <li>
+                  There are haptics - the phone vibrates when you check or
+                  uncheck an option!
+                </li>
+                <li>
+                  The sounds and visual cues are all identical to the other
+                  outputs.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="part3">
+        <h2>Part 3: State Models & Redesign</h2>
+        <p>
+          Based on my observations from Google Forms, Microsoft To-Do, and Hades
+          Settings, I identified a few areas that I wanted to improve regarding
+          how checkboxes function across these applications. This case study
+          specifically will address potential improvements that can be made for
+          Google Forms checkboxes. Before redesigning, however, I first created
+          state models to show how users currently interact with the checkboxes
+          - the available states of the components and the interactions that
+          change those states.
+        </p>
+      </section>
+
+      <section id="part4">
+        <h2>Part 4: Reflection</h2>
+        <p>errrrrr</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Accessible Components Assignment - Created by Kathy Li <3</p>
+    </footer>
+  </body>
+</html>
